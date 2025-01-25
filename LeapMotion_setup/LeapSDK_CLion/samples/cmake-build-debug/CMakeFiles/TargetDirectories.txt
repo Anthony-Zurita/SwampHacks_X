@@ -6,6 +6,7 @@ C:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/sample
 C:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/samples/cmake-build-debug/CMakeFiles/InterpolationSample.dir
 C:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/samples/cmake-build-debug/CMakeFiles/CheckLicenseFlagSample.dir
 C:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/samples/cmake-build-debug/CMakeFiles/FiducialTrackingSample.dir
+C:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/samples/cmake-build-debug/CMakeFiles/test_get_hand_data.dir
 C:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/samples/cmake-build-debug/CMakeFiles/MultiDeviceSample.dir
 C:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/samples/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/samples/cmake-build-debug/CMakeFiles/rebuild_cache.dir

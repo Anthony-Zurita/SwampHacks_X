@@ -32,6 +32,7 @@ int main(int argc, char** argv) {
     printf("Using device %s.\n", deviceProps->serial);
 
   for(;;){
+    Sleep(500);
     LEAP_TRACKING_EVENT *frame = GetFrame();
     if(frame && (frame->tracking_frame_id > lastFrameID)){
       lastFrameID = frame->tracking_frame_id;
