@@ -1,0 +1,18 @@
+# ninja log v5
+2	238	7595375621748961	CMakeFiles/leapc_example.dir/leapc_main.c.obj	6f98439e9e1b550b
+28	270	7595375621748961	CMakeFiles/ImageSample.dir/ImageSample.c.obj	c19e39116e89209a
+20	272	7595375621788965	CMakeFiles/CallbackSample.dir/CallbackSample.c.obj	8eac8b3307450977
+54	273	7595375621918988	CMakeFiles/CheckLicenseFlagSample.dir/CheckLicenseFlagSample.c.obj	a813f8b572f5251
+62	277	7595375622144410	CMakeFiles/FiducialTrackingSample.dir/FiducialTrackingSample.c.obj	9cd714efd3f68a53
+11	303	7595375622443658	CMakeFiles/libExampleConnection.dir/ExampleConnection.c.obj	4f167e4f26ca37f0
+71	387	7595375622639908	CMakeFiles/MultiDeviceSample.dir/MultiDeviceSample.c.obj	61a71b44da987048
+304	632	7595375625374381	ImageSample.exe	b3c3a4ca33fb249
+346	647	7595375625564422	FiducialTrackingSample.exe	e37e9f977990667a
+327	647	7595375625594414	CallbackSample.exe	5cd355209e2a5212
+390	697	7595375626084590	MultiDeviceSample.exe	6d524f8b18f84ad6
+366	701	7595375626119736	CheckLicenseFlagSample.exe	b9127832062e9ce0
+244	758	7595375624472091	leapc_example.exe	f5aa66e26c9276b9
+45	1523	7595375634653568	CMakeFiles/PollingSample.dir/PollingSample.c.obj	e2625fde3b46db16
+36	1556	7595375634962179	CMakeFiles/InterpolationSample.dir/InterpolationSample.c.obj	395eebe01279523
+1526	1751	7595375636803659	PollingSample.exe	d2f90d061313d4ce
+1556	1777	7595375637082669	InterpolationSample.exe	4c9d76ec1ff4035a

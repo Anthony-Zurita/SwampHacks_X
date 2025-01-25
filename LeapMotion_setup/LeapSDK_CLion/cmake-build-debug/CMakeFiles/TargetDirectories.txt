@@ -1,0 +1,3 @@
+C:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/cmake-build-debug/CMakeFiles/LeapSDK_CLion.dir
+C:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/cmake-build-debug/CMakeFiles/rebuild_cache.dir
