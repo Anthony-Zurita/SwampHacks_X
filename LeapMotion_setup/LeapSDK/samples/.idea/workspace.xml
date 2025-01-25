@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader"><![CDATA[{
+  "useNewFormat": true
+}]]></component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="leapc_example" targetName="CheckLicenseFlagSample" />
+      <config projectName="leapc_example" targetName="ImageSample" />
+      <config projectName="leapc_example" targetName="libExampleConnection" />
+      <config projectName="leapc_example" targetName="MultiDeviceSample" />
+      <config projectName="leapc_example" targetName="CallbackSample" />
+      <config projectName="leapc_example" targetName="InterpolationSample" />
+      <config projectName="leapc_example" targetName="leapc_example" />
+      <config projectName="leapc_example" targetName="FiducialTrackingSample" />
+      <config projectName="leapc_example" targetName="PollingSample" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5b4be593-ac43-432a-abf3-8394b7ff0798" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../samples/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../samples/CallbackSample.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../samples/CheckLicenseFlagSample.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../samples/ExampleConnection.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../samples/ExampleConnection.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../samples/FiducialTrackingSample.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../samples/ImageSample.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../samples/InterpolationSample.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../samples/MultiDeviceSample.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../samples/PollingSample.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../samples/RecordPlaybackSample.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../samples/leapc_main.c" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2022" />
+    <option name="minorVersion" value="3.1" />
+  </component>
+  <component name="ProjectId" id="2s8Gij49Td1vw7zIaRzvlPkBDra" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "C:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK/samples",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="CMake Application.CallbackSample">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CallbackSample" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leapc_example" TARGET_NAME="CallbackSample" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leapc_example" RUN_TARGET_NAME="CallbackSample">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CheckLicenseFlagSample" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leapc_example" TARGET_NAME="CheckLicenseFlagSample" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leapc_example" RUN_TARGET_NAME="CheckLicenseFlagSample">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FiducialTrackingSample" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leapc_example" TARGET_NAME="FiducialTrackingSample" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leapc_example" RUN_TARGET_NAME="FiducialTrackingSample">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ImageSample" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leapc_example" TARGET_NAME="ImageSample" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leapc_example" RUN_TARGET_NAME="ImageSample">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InterpolationSample" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leapc_example" TARGET_NAME="InterpolationSample" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leapc_example" RUN_TARGET_NAME="InterpolationSample">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MultiDeviceSample" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leapc_example" TARGET_NAME="MultiDeviceSample" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leapc_example" RUN_TARGET_NAME="MultiDeviceSample">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PollingSample" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leapc_example" TARGET_NAME="PollingSample" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leapc_example" RUN_TARGET_NAME="PollingSample">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="leapc_example" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leapc_example" TARGET_NAME="leapc_example" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="leapc_example" RUN_TARGET_NAME="leapc_example">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="libExampleConnection" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="leapc_example" TARGET_NAME="libExampleConnection" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.CallbackSample" />
+      <item itemvalue="CMake Application.CheckLicenseFlagSample" />
+      <item itemvalue="CMake Application.FiducialTrackingSample" />
+      <item itemvalue="CMake Application.ImageSample" />
+      <item itemvalue="CMake Application.InterpolationSample" />
+      <item itemvalue="CMake Application.leapc_example" />
+      <item itemvalue="CMake Application.libExampleConnection" />
+      <item itemvalue="CMake Application.MultiDeviceSample" />
+      <item itemvalue="CMake Application.PollingSample" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5b4be593-ac43-432a-abf3-8394b7ff0798" name="Changes" comment="" />
+      <created>1737829917251</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1737829917251</updated>
+      <workItem from="1737829918437" duration="2451000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
