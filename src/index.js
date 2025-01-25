@@ -1,11 +1,13 @@
+//inspired by tutorial of implementing auth0: https://www.youtube.com/watch?v=pAzqscDx580&ab_channel=DaveGray
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { Auth0Provider } from '@auth0/auth0-react';
 
-const domain = 'dev-fkmaeh48op3q60sz.us.auth0.com';
-const clientId = 'rQ7KdT1K6xZ3266jao51nXsCowFeyTe9';
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
