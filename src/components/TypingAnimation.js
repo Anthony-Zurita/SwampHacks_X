@@ -10,7 +10,7 @@ const TypingAnimation = () => {
         'Welcome to Visual Voice!',
       ]}
       wrapper="span"
-      speed={40}
+      speed={55}
       style={{ fontSize: '5em', display: 'inline-block' }}
       repeat={1}
       cursor={false}
