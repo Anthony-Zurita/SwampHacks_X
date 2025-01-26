@@ -6,6 +6,7 @@ import LoadingSpinner from "./components/LoadingSpinner";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import LightNavbar from "./components/Navbar";
 import Learn from "./components/Learn";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const { isLoading, error, isAuthenticated } = useAuth0();
@@ -23,9 +24,16 @@ function App() {
       <LightNavbar />
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/profile" element={ isAuthenticated ? <Profile /> : <Navigate to="/" />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/profile"
+          element={isAuthenticated ? <Profile /> : <Navigate to="/" />}
+        />
         <Route path="/learn" element={<Learn />} />
-        <Route path="/online-tutors" element={<div>Tutors Page Coming Soon</div>} />
+        <Route
+          path="/online-tutors"
+          element={<div>Tutors Page Coming Soon</div>}
+        />
       </Routes>
     </BrowserRouter>
   );
