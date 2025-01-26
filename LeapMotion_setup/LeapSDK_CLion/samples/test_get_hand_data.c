@@ -20,23 +20,27 @@
 #include "ExampleConnection.h"
 
 #define nFrames 1000
+#define LOG_PATH "../output/log_abc3.csv"
 
 
 void printHandData(const LEAP_HAND* hand) {
     // General hand data
     printf("Hand ID: %u (%s)\n", hand->id, hand->type == eLeapHandType_Left ? "Left" : "Right");
-    printf("  Palm Position: (%f, %f, %f)\n", hand->palm.position.x, hand->palm.position.y, hand->palm.position.z);
-    printf("  Confidence: %f\n", hand->confidence);
-    printf("  Pinch Distance: %f\n", hand->pinch_distance);
-    printf("  Pinch Strength: %f\n", hand->pinch_strength);
-    printf("  Grab Strength: %f\n", hand->grab_strength);
-    printf("  Grab Angle: %f\n", hand->grab_angle);
-    printf("  Wrist Position: (%f, %f, %f)\n", hand->arm.prev_joint.x, hand->arm.prev_joint.y, hand->arm.prev_joint.z);
-    printf("  Elbow Position: (%f, %f, %f)\n", hand->arm.next_joint.x, hand->arm.next_joint.y, hand->arm.next_joint.z);
+//    printf("  Palm Position: (%f, %f, %f)\n", hand->palm.position.x, hand->palm.position.y, hand->palm.position.z);
+    printf("  Palm Direction: (%f, %f, %f)\n", hand->palm.direction.x, hand->palm.direction.y, hand->palm.direction.z);
+//    printf("  Confidence: %f\n", hand->confidence);
+//    printf("  Pinch Distance: %f\n", hand->pinch_distance);
+//    printf("  Pinch Strength: %f\n", hand->pinch_strength);
+//    printf("  Grab Strength: %f\n", hand->grab_strength);
+//    printf("  Grab Angle: %f\n", hand->grab_angle);
+//    printf("  Wrist Position: (%f, %f, %f)\n", hand->arm.prev_joint.x, hand->arm.prev_joint.y, hand->arm.prev_joint.z);
+//    printf("  Elbow Position: (%f, %f, %f)\n", hand->arm.next_joint.x, hand->arm.next_joint.y, hand->arm.next_joint.z);
 
     char *finger_names[5] = {"thumb", "index", "middle", "ring", "pinky"};
 
     // Digits (fingers)
+
+    /*
     for (int d = 0; d < 5; d++) {
         const LEAP_DIGIT* digit = &hand->digits[d];
         printf("  Finger %d (%s) ID: %d, Extended: %s\n", d, finger_names[d], digit->finger_id, digit->is_extended ? "Yes" : "No");
@@ -54,6 +58,7 @@ void printHandData(const LEAP_HAND* hand) {
                    bone->width);
         }
     }
+*/
 }
 
 
@@ -180,7 +185,7 @@ void createLog(FILE* log, const LEAP_HAND* hand, const int64_t index, char lette
                      "%f,%f,%f,"
                      "%f,%f,%f,"
                      "%f,%f,%f,%f,"
-                     "%f,%f,%f,%f,"
+                     "%f,%f,%f,%f"
                      ,
 
                 index, toupper(letter), nHands,
@@ -197,7 +202,7 @@ void createLog(FILE* log, const LEAP_HAND* hand, const int64_t index, char lette
             fprintf(log,"%u,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,"          //thumb metacarpal
                         "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,"             //thumb proximal
                         "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,"             //thumb intermediate
-                        "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,"             //thumb distal
+                        "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"             //thumb distal
                     ,
 
                     hand->digits[i].is_extended,
@@ -234,7 +239,7 @@ int main(int argc, char** argv) {
         printf("Using device %s.\n", deviceProps->serial);
 
     FILE* log;
-    log = fopen("../output/log.csv", "w");
+    log = fopen(LOG_PATH, "w");
 
     if (log == NULL) {
         printf("FILE NOT OPENED, exiting");
@@ -330,7 +335,7 @@ int main(int argc, char** argv) {
 
              "pinky3_prev_jointX,pinky3_prev_jointY,pinky3_prev_jointZ,"
              "pinky3_nex_jointX,pinky3_nex_jointY,pinky3_nex_jointZ,"
-             "pinky3_rotationX,pinky3_rotationY,pinky3_rotationZ,pinky3_rotationW,";
+             "pinky3_rotationX,pinky3_rotationY,pinky3_rotationZ,pinky3_rotationW";
 
     fprintf(log,"%s", header);
 
@@ -356,7 +361,7 @@ int main(int argc, char** argv) {
 
         for (int curr_frame = 0; curr_frame < nFrames;) {
             //printf("\n\n");
-            //Sleep(1000);
+            //Sleep(5000);
 
 
             LEAP_TRACKING_EVENT *frame = GetFrame();
@@ -370,6 +375,7 @@ int main(int argc, char** argv) {
                         createLog(log, hand, frame->tracking_frame_id, target_letter, frame->nHands);
                         printHandData(hand);
                         curr_frame++;
+                        //curr_frame;
                     }
                 }
             }

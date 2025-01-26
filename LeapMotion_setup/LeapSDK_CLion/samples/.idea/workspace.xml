@@ -37,6 +37,7 @@
       <change beforePath="$PROJECT_DIR$/../../LeapSDK/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../LeapSDK/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../LeapSDK/samples/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../LeapSDK/samples/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/test_get_hand_data.dir/test_get_hand_data.c.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/test_get_hand_data.dir/test_get_hand_data.c.obj" afterDir="false" />
@@ -173,7 +174,7 @@
       <workItem from="1737829918437" duration="3496000" />
       <workItem from="1737833973123" duration="37000" />
       <workItem from="1737834227522" duration="65000" />
-      <workItem from="1737834346675" duration="21962000" />
+      <workItem from="1737834346675" duration="24534000" />
     </task>
     <servers />
   </component>
