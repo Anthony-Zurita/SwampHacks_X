@@ -3,11 +3,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
-// import { useAuth0 } from '@auth0/auth0-react';
 
 function LightNavbar() {
-    // const { isAuthenticated } = useAuth0();
-
 
   return (
       <Navbar bg="primary" data-bs-theme="dark">
