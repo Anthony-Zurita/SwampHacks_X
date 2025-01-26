@@ -1,12 +1,11 @@
-//https://www.google.com/url?sa=i&url=https%3A%2F%2Fkidscarehomehealth.com%2Fbasic-sign-language-signs%2F&psig=AOvVaw0NXlp938lcn3lWjcm_M6jM&ust=1737934285972000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIidz--DkosDFQAAAAAdAAAAABAI
+
 import { Container } from 'react-bootstrap';
 import TypingAnimation from './TypingAnimation';
 
 const Landing = () => {
 
     return (
-        <div 
-            className="landing-container"
+        <div
             style={{
                 backgroundImage: "url('https://kidscarehomehealth.com/wp-content/uploads/2022/08/KCHH-sign-language.jpg')",
                 backgroundSize: 'cover',
@@ -23,11 +22,11 @@ const Landing = () => {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    backgroundColor: 'rgba(0, 0, 0, 0.4)' // Slightly lighter overlay
+                    backgroundColor: 'rgba(0, 0, 0, 0.4)'
                 }}
             />
             
-            {/* Semi-transparent white bar */}
+            {/* Semi-transparent white bar to help make text stand out */}
             <div 
                 className="text-overlay-bar"
                 style={{

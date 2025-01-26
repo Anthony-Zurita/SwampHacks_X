@@ -1,3 +1,5 @@
+// used this documentation to implement the react bootstrap nav bar: https://react-bootstrap.netlify.app/docs/components/navbar/
+
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";

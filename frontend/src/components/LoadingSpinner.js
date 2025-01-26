@@ -1,3 +1,4 @@
+//implemented using react-bootstrap spinner documentation: https://react-bootstrap.netlify.app/docs/components/spinners/
 import Spinner from 'react-bootstrap/Spinner';
 
 function LoadingSpinner() {

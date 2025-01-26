@@ -11,14 +11,17 @@ import Dashboard from "./pages/Dashboard";
 function App() {
   const { isLoading, error, isAuthenticated } = useAuth0();
 
+//if an error occurs, display an error message
   if (error) {
     return <p>Authentication Error</p>;
   }
 
+//if loading is true, display a loading spinner component to make the site look cleaner
   if (isLoading) {
     return <LoadingSpinner />;
   }
 
+// below is all the routes for the web app
   return (
     <BrowserRouter>
       <LightNavbar />
