@@ -35,9 +35,9 @@ const Landing = () => {
       <Container className="text-center text-white position-relative" style={{ paddingTop: '15vh' }}>
         <TypingAnimation />
         <p className="lead mb-4">
-          Empowering communication through sign language learning. 
-          Connect with expert tutors and join our community of learners 
-          on your journey to mastering sign language.
+          We empowering communication through sign language learning. 
+          Our web application provides a fun and effective way of learning sign language. Behind 
+          the scenes, we use a continously learning machine learning model, big data, and money yes.
         </p>
       </Container>
     </div>

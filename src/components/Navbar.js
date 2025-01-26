@@ -18,7 +18,7 @@ function LightNavbar() {
             <Nav.Link href="#features">Learn</Nav.Link>
             <Nav.Link href="#pricing">Tutors</Nav.Link>
           </Nav>
-          <Nav>
+          <Nav className="align-items-center">
             <LoginButton />
             <LogoutButton />
           </Nav>
