@@ -145,17 +145,25 @@ int main(int argc, char** argv) {
     }
     else {printf("FILE OPENED SUCCEFULLY\n");}
 
-    while (true) {
+    int loop_cnt = 0;
+    char target_letter;
+
+    while (loop_cnt < 3) {
 
         //printf("How many frames of data?\n");
         //scanf("%d", &nFrames);
-
         printf("Which letter are you inputting in ASL?\n");
-        char target_letter;
-        scanf("%c", &target_letter);
+        Sleep(5000);
+
+        if (loop_cnt == 0) {target_letter = 'A';}
+        if (loop_cnt == 1) {target_letter = 'B';}
+        if (loop_cnt == 2) {target_letter = 'C';}
+
+
+        //scanf("%c", &target_letter);
         //printf("you entered %c", target_letter);
 
-        if (target_letter == '0') {break;}
+        //if (target_letter == '0') {break;}
 
         for (int curr_frame = 0; curr_frame < nFrames;) {
             printf("\n\n");
@@ -176,6 +184,8 @@ int main(int argc, char** argv) {
                 }
             }
         } //ctrl-c to exit
+
+        loop_cnt++;
     }
     fclose(log);
     return 0;
