@@ -6,8 +6,8 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000", // Allow requests from this origin
-    methods: ["GET", "POST"], // Allow specific HTTP methods
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
   },
 });
 const activeUsers = {};
@@ -22,14 +22,23 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    for (const [userId, socketId] of Object.entries(activeUsers)) {
+    for (const [uniqueId, socketId] of Object.entries(activeUsers)) {
       if (socketId === socket.id) {
-        delete activeUsers[userId];
-        console.log(`User disconnected: ${userId}`);
+        delete activeUsers[uniqueId];
+        console.log(`User disconnected: ${uniqueId}`);
         break;
       }
     }
     console.log("Active users:", activeUsers);
+  });
+
+  socket.on("call-user", ({ targetId, offer }) => {
+    const targetSocket = activeUsers[targetId];
+    if (targetSocket) {
+      io.to(targetSocket).emit("incoming-call", { from: socket.id, offer });
+    } else {
+      socket.emit("error", "User not available");
+    }
   });
 });
 
