@@ -7,6 +7,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import LightNavbar from "./components/Navbar";
 import Learn from "./components/Learn";
 import Dashboard from "./pages/Dashboard";
+import Meeting from "./pages/Meeting";
 
 function App() {
   const { isLoading, error, isAuthenticated } = useAuth0();
@@ -28,6 +29,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/meeting" element={<Meeting />} />
+
         <Route
           path="/profile"
           element={isAuthenticated ? <Profile /> : <Navigate to="/" />}
