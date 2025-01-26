@@ -19,7 +19,7 @@
 #include "LeapC.h"
 #include "ExampleConnection.h"
 
-#define nFrames 1000
+#define nFrames 10
 
 
 void printHandData(const LEAP_HAND* hand) {
@@ -82,21 +82,21 @@ void createLog(FILE* log, const LEAP_HAND* hand, const int64_t index, char lette
 
     for (int n = 0; n < nHands; n++) {
         fputc('\n', log);
-        fprintf(log, "%lld,%c,%u,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"
-                     "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"
-                     "%f,%f,%f,%f"
-                     ,
+//        fprintf(log, "%lld,%c,%u,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"
+//                     "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"
+//                     "%f,%f,%f,%f"
+//                     ,
+//
+//                index, toupper(letter), nHands, hand->palm.position.x, hand->palm.position.y, hand->palm.position.z,                         //first line from header
+//                hand->palm.direction.x, hand->palm.direction.y, hand->palm.direction.z,                                     //first line from header
+//                hand->palm.orientation.x, hand->palm.orientation.y, hand->palm.orientation.z, hand->palm.orientation.w,     //first line from header
+//                hand->arm.prev_joint.x,hand->arm.prev_joint.x,hand->arm.prev_joint.x,                                       //second line from header
+//                hand->arm.next_joint.x,hand->arm.next_joint.x,hand->arm.next_joint.x,                                       //second line from header
+//                hand->arm.rotation.x,hand->arm.rotation.y,hand->arm.rotation.z,hand->arm.rotation.w,                        //second line from header
+//                hand->pinch_distance,hand->pinch_strength,hand->grab_angle,hand->grab_strength                             //third line from header
+//                );
 
-                index, toupper(letter), nHands, hand->palm.position.x, hand->palm.position.y, hand->palm.position.z,                         //first line from header
-                hand->palm.direction.x, hand->palm.direction.y, hand->palm.direction.z,                                     //first line from header
-                hand->palm.orientation.x, hand->palm.orientation.y, hand->palm.orientation.z, hand->palm.orientation.w,     //first line from header
-                hand->arm.prev_joint.x,hand->arm.prev_joint.x,hand->arm.prev_joint.x,                                       //second line from header
-                hand->arm.next_joint.x,hand->arm.next_joint.x,hand->arm.next_joint.x,                                       //second line from header
-                hand->arm.rotation.x,hand->arm.rotation.y,hand->arm.rotation.z,hand->arm.rotation.w,                        //second line from header
-                hand->pinch_distance,hand->pinch_strength,hand->grab_angle,hand->grab_strength                             //third line from header
-                );
-
-        for (int i = 0; i < 5; i++) {
+        for (int i = 1; i < 2; i++) {
             fprintf(log,"%u,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"          //thumb metacarpal
                         "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"             //thumb proximal
                         "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"             //thumb intermediate
@@ -153,7 +153,7 @@ int main(int argc, char** argv) {
         //printf("How many frames of data?\n");
         //scanf("%d", &nFrames);
         printf("Which letter are you inputting in ASL?\n");
-        Sleep(5000);
+        Sleep(2000);
 
         if (loop_cnt == 0) {target_letter = 'A';}
         if (loop_cnt == 1) {target_letter = 'B';}
