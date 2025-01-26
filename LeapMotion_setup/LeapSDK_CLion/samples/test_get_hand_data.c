@@ -173,25 +173,25 @@ void createLog(FILE* log, const LEAP_HAND* hand, const int64_t index, char lette
 
     for (int n = 0; n < nHands; n++) {
         fputc('\n', log);
-//        fprintf(log, "%lld,%c,%u,"
-//                     "%f,%f,%f,"
-//                     "%f,%f,%f,"
-//                     "%f,%f,%f,%f"
-//                     "%f,%f,%f,"
-//                     "%f,%f,%f,"
-//                     "%f,%f,%f,%f"
-//                     "%f,%f,%f,%f"
-//                     ,
-//
-//                index, toupper(letter), nHands,
-//                hand->palm.position.x, hand->palm.position.y, hand->palm.position.z,                         //first line from header
-//                hand->palm.direction.x, hand->palm.direction.y, hand->palm.direction.z,                                     //first line from header
-//                hand->palm.orientation.x, hand->palm.orientation.y, hand->palm.orientation.z, hand->palm.orientation.w,     //first line from header
-//                hand->arm.prev_joint.x,hand->arm.prev_joint.y,hand->arm.prev_joint.z,                                       //second line from header
-//                hand->arm.next_joint.x,hand->arm.next_joint.y,hand->arm.next_joint.z,                                       //second line from header
-//                hand->arm.rotation.x,hand->arm.rotation.y,hand->arm.rotation.z,hand->arm.rotation.w,                        //second line from header
-//                hand->pinch_distance,hand->pinch_strength,hand->grab_angle,hand->grab_strength                             //third line from header
-//                );
+        fprintf(log, "%lld,%c,%u,"
+                     "%f,%f,%f,"
+                     "%f,%f,%f,"
+                     "%f,%f,%f,%f,"
+                     "%f,%f,%f,"
+                     "%f,%f,%f,"
+                     "%f,%f,%f,%f,"
+                     "%f,%f,%f,%f,"
+                     ,
+
+                index, toupper(letter), nHands,
+                hand->palm.position.x, hand->palm.position.y, hand->palm.position.z,                         //first line from header
+                hand->palm.direction.x, hand->palm.direction.y, hand->palm.direction.z,                                     //first line from header
+                hand->palm.orientation.x, hand->palm.orientation.y, hand->palm.orientation.z, hand->palm.orientation.w,     //first line from header
+                hand->arm.prev_joint.x,hand->arm.prev_joint.y,hand->arm.prev_joint.z,                                       //second line from header
+                hand->arm.next_joint.x,hand->arm.next_joint.y,hand->arm.next_joint.z,                                       //second line from header
+                hand->arm.rotation.x,hand->arm.rotation.y,hand->arm.rotation.z,hand->arm.rotation.w,                        //second line from header
+                hand->pinch_distance,hand->pinch_strength,hand->grab_angle,hand->grab_strength                             //third line from header
+                );
 
         for (int i = 0; i < 5; i++) {
             fprintf(log,"%u,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,"          //thumb metacarpal
@@ -243,9 +243,9 @@ int main(int argc, char** argv) {
     else {printf("FILE OPENED SUCCEFULLY\n");}
 
     char *header;
-    header = //"key,letter,nHands,palmX,palmY,palmZ,palm_dirX,palm_dirY,palm_dirZ,palm_orientX,palm_orientY,palm_orientZ,palm_orientW,arm_prev_jointX,arm_prev_jointY,arm_prev_jointZ,arm_next_jointX,arm_next_jointY,arm_next_jointZ,"
-             //"arm_rotationX,arm_rotationY,arm_rotationZ,arm_rotationW,"
-             //"pinch_dist,pinch_str,grab_angle,grab_strength,"
+    header = "key,letter,nHands,palmX,palmY,palmZ,palm_dirX,palm_dirY,palm_dirZ,palm_orientX,palm_orientY,palm_orientZ,palm_orientW,arm_prev_jointX,arm_prev_jointY,arm_prev_jointZ,arm_next_jointX,arm_next_jointY,arm_next_jointZ,"
+             "arm_rotationX,arm_rotationY,arm_rotationZ,arm_rotationW,"
+             "pinch_dist,pinch_str,grab_angle,grab_strength,"
 
              "thumb_extended,"
              "thumb0_prev_jointX,thumb0_prev_jointY,thumb0_prev_jointZ,"
