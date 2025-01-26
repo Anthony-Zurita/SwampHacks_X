@@ -10,17 +10,20 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   },
 });
+
 const activeUsers = {};
 
 io.on("connection", (socket) => {
   console.log(`Socket connected: ${socket.id}`);
 
+  // Register user
   socket.on("register", (userId) => {
     activeUsers[userId] = socket.id;
     console.log(`User registered: ${userId}`);
     console.log("Active users:", activeUsers);
   });
 
+  // Handle disconnection
   socket.on("disconnect", () => {
     for (const [uniqueId, socketId] of Object.entries(activeUsers)) {
       if (socketId === socket.id) {
@@ -32,14 +35,13 @@ io.on("connection", (socket) => {
     console.log("Active users:", activeUsers);
   });
 
+  // Handle call initiation
   socket.on("call-user", ({ targetId, offer, userId }) => {
     const targetSocket = activeUsers[targetId];
-
     if (targetSocket) {
-      // Relay the offer to the target user
       io.to(targetSocket).emit("incoming-call", {
-        from: userId, // Send the caller's user ID, not just socket ID
-        socketId: socket.id, // Optionally include socket.id if needed
+        from: userId, // Unique ID of the caller
+        socketId: socket.id,
         offer, // WebRTC offer
       });
       console.log(
@@ -50,19 +52,27 @@ io.on("connection", (socket) => {
     }
   });
 
+  // Handle call acceptance
   socket.on("call-accepted", ({ targetId, answer }) => {
-    console.log("Call accepted target (user ID):", targetId);
-
-    // Lookup the actual socket ID of the target user
     const targetSocket = activeUsers[targetId];
-    console.log("Resolved target socket:", targetSocket);
-
     if (targetSocket) {
-      // Relay the answer back to the caller
       io.to(targetSocket).emit("call-answered", { answer });
       console.log(`Answer sent to socket ID: ${targetSocket}`);
     } else {
       console.error("Target user not available to receive the answer.");
+    }
+  });
+
+  // Handle ICE candidate exchange
+  socket.on("ice-candidate", ({ targetId, candidate }) => {
+    const targetSocket = activeUsers[targetId];
+    if (targetSocket) {
+      io.to(targetSocket).emit("ice-candidate", { candidate });
+      console.log(`Relayed ICE candidate to ${targetId}`);
+    } else {
+      console.error(
+        `Target user not found for ICE candidate relay: ${targetId}`
+      );
     }
   });
 });

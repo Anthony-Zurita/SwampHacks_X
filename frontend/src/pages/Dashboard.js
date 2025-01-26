@@ -5,19 +5,19 @@ import { Modal, Button } from "react-bootstrap";
 import { io } from "socket.io-client";
 import UserCard from "../components/UserCard";
 import CallInviteForm from "../components/CallInviteForm";
-import { Navigate } from "react-router-dom";
 
 const socket = io("http://localhost:3001");
 
 function Dashboard() {
   const { user, isAuthenticated } = useAuth0();
   const [sessionId, setSessionId] = useState("");
-  const [redirectData, setRedirectData] = useState(null);
   const [incomingCall, setIncomingCall] = useState(null);
   const peerConnection = useRef(null);
+  const localVideoRef = useRef(null);
+  const remoteVideoRef = useRef(null);
 
   useEffect(() => {
-    // Fetch Session ID and Register User
+    // Register user
     const fetchSessionId = async () => {
       try {
         const uniqueId = user.sub.split("|")[1];
@@ -29,18 +29,19 @@ function Dashboard() {
     };
 
     fetchSessionId();
-  }, [user]);
-  useEffect(() => {
-    // Listen for incoming-call
+
+    // Listen for incoming call
     socket.on("incoming-call", ({ from, offer }) => {
       console.log(`Incoming call from: ${from}`);
       setIncomingCall({ from, offer });
     });
 
-    // Listen for call-answered
+    // Listen for call answered
     socket.on("call-answered", ({ answer }) => {
-      if (peerConnection.current) {
-        console.log("starting rtc");
+      if (
+        peerConnection.current &&
+        peerConnection.current.signalingState === "have-local-offer"
+      ) {
         peerConnection.current
           .setRemoteDescription(new RTCSessionDescription(answer))
           .then(() => {
@@ -50,20 +51,28 @@ function Dashboard() {
             console.error("Error setting remote description:", error);
           });
       } else {
-        console.error("No active peer connection found.");
+        console.warn("Ignoring redundant call-answered event.");
       }
     });
 
-    // Clean up listeners on unmount
+    // Listen for ICE candidates
+    socket.on("ice-candidate", ({ candidate }) => {
+      if (candidate && peerConnection.current) {
+        peerConnection.current
+          .addIceCandidate(new RTCIceCandidate(candidate))
+          .then(() => console.log("ICE candidate added successfully"))
+          .catch((error) =>
+            console.error("Error adding ICE candidate:", error)
+          );
+      }
+    });
+
     return () => {
       socket.off("incoming-call");
       socket.off("call-answered");
+      socket.off("ice-candidate");
     };
-  }, []);
-
-  if (!isAuthenticated) {
-    return <p>Please log in to access your dashboard.</p>;
-  }
+  }, [user]);
 
   const handleInviteSubmit = (callId) => {
     if (!callId.trim()) {
@@ -71,11 +80,34 @@ function Dashboard() {
       return;
     }
 
-    peerConnection.current = new RTCPeerConnection(); // Initialize peer connection
+    peerConnection.current = new RTCPeerConnection({
+      iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
+    });
+
+    peerConnection.current.onicecandidate = (event) => {
+      if (event.candidate) {
+        socket.emit("ice-candidate", {
+          targetId: callId,
+          candidate: event.candidate,
+        });
+      }
+    };
+
+    peerConnection.current.ontrack = (event) => {
+      // Attach remote stream to video element
+      if (remoteVideoRef.current) {
+        remoteVideoRef.current.srcObject = event.streams[0];
+      }
+    };
 
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((stream) => {
+        // Attach local stream to video element
+        if (localVideoRef.current) {
+          localVideoRef.current.srcObject = stream;
+        }
+
         stream
           .getTracks()
           .forEach((track) => peerConnection.current.addTrack(track, stream));
@@ -87,7 +119,6 @@ function Dashboard() {
           const userId = user.sub.split("|")[1];
           socket.emit("call-user", { targetId: callId, offer, userId });
           console.log(`Offer sent to ${callId}`);
-          setRedirectData({ callId, user });
         });
       })
       .catch((error) => {
@@ -97,11 +128,34 @@ function Dashboard() {
   };
 
   const handleAnswer = () => {
-    peerConnection.current = new RTCPeerConnection(); // Initialize peer connection
+    peerConnection.current = new RTCPeerConnection({
+      iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
+    });
+
+    peerConnection.current.onicecandidate = (event) => {
+      if (event.candidate) {
+        socket.emit("ice-candidate", {
+          targetId: incomingCall.from,
+          candidate: event.candidate,
+        });
+      }
+    };
+
+    peerConnection.current.ontrack = (event) => {
+      // Attach remote stream to video element
+      if (remoteVideoRef.current) {
+        remoteVideoRef.current.srcObject = event.streams[0];
+      }
+    };
 
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((stream) => {
+        // Attach local stream to video element
+        if (localVideoRef.current) {
+          localVideoRef.current.srcObject = stream;
+        }
+
         stream
           .getTracks()
           .forEach((track) => peerConnection.current.addTrack(track, stream));
@@ -110,23 +164,15 @@ function Dashboard() {
           new RTCSessionDescription(incomingCall.offer)
         );
       })
-      .then(() => {
-        return peerConnection.current.createAnswer();
-      })
+      .then(() => peerConnection.current.createAnswer())
       .then((answer) => {
         return peerConnection.current.setLocalDescription(answer).then(() => {
           socket.emit("call-accepted", {
             targetId: incomingCall.from,
             answer,
           });
-          console.log(
-            "Emitting call-accepted with targetId:",
-            incomingCall.from
-          );
-
-          console.log("Call accepted and answer sent!");
-          setIncomingCall(null);
-          setRedirectData({ from: incomingCall.from, user });
+          console.log("Answer sent!");
+          setIncomingCall(null); // Close the modal after answering
         });
       })
       .catch((error) => {
@@ -136,30 +182,11 @@ function Dashboard() {
 
   const handleDecline = () => {
     console.log("Call declined!");
-    setIncomingCall(null); // Close the modal
+    setIncomingCall(null); // Close the modal after declining
   };
 
-  if (redirectData) {
-    return (
-      <Navigate
-        to={{
-          pathname: "/meeting",
-          state: { redirectData },
-        }}
-      />
-    );
-  }
-
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "50vh",
-        backgroundColor: "#f8f9fa",
-      }}
-    >
+    <div>
       {incomingCall && (
         <Modal show={true} onHide={handleDecline} centered>
           <Modal.Header closeButton>
@@ -179,22 +206,30 @@ function Dashboard() {
         </Modal>
       )}
 
-      <Card style={{ width: "1000px", padding: "20px", borderRadius: "12px" }}>
+      <Card>
         <UserCard user={user} sessionId={sessionId} />
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginTop: "20px",
-          }}
-        >
-          <div style={{ textAlign: "center", flex: 1, marginRight: "10px" }}>
-            <h5>Start Call</h5>
-            <CallInviteForm onSubmit={handleInviteSubmit} />
-          </div>
-        </div>
+        <CallInviteForm onSubmit={handleInviteSubmit} />
       </Card>
+
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
+      >
+        <video
+          ref={localVideoRef}
+          autoPlay
+          muted
+          style={{
+            width: "300px",
+            marginRight: "20px",
+            border: "1px solid black",
+          }}
+        />
+        <video
+          ref={remoteVideoRef}
+          autoPlay
+          style={{ width: "300px", border: "1px solid black" }}
+        />
+      </div>
     </div>
   );
 }
