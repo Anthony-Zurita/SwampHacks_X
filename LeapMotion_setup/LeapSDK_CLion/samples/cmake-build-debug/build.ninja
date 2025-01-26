@@ -56,8 +56,15 @@ build CMakeFiles/leapc_example.dir/leapc_main.c.obj: C_COMPILER__leapc_example_D
   OBJECT_DIR = CMakeFiles\leapc_example.dir
   OBJECT_FILE_DIR = CMakeFiles\leapc_example.dir
 
-build CMakeFiles/leapc_example.dir/test_get_hand_data.c.obj: C_COMPILER__leapc_example_Debug C$:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/samples/test_get_hand_data.c || cmake_object_order_depends_target_leapc_example
-  DEP_FILE = CMakeFiles\leapc_example.dir\test_get_hand_data.c.obj.d
+build CMakeFiles/leapc_example.dir/ABC_get_hand_data.c.obj: C_COMPILER__leapc_example_Debug C$:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/samples/ABC_get_hand_data.c || cmake_object_order_depends_target_leapc_example
+  DEP_FILE = CMakeFiles\leapc_example.dir\ABC_get_hand_data.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -isystem "C:/Program Files/Ultraleap/LeapSDK/include"
+  OBJECT_DIR = CMakeFiles\leapc_example.dir
+  OBJECT_FILE_DIR = CMakeFiles\leapc_example.dir
+
+build CMakeFiles/leapc_example.dir/DLU_get_hand_data.c.obj: C_COMPILER__leapc_example_Debug C$:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/samples/DLU_get_hand_data.c || cmake_object_order_depends_target_leapc_example
+  DEP_FILE = CMakeFiles\leapc_example.dir\DLU_get_hand_data.c.obj.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem "C:/Program Files/Ultraleap/LeapSDK/include"
   OBJECT_DIR = CMakeFiles\leapc_example.dir
@@ -71,7 +78,7 @@ build CMakeFiles/leapc_example.dir/test_get_hand_data.c.obj: C_COMPILER__leapc_e
 #############################################
 # Link the executable leapc_example.exe
 
-build leapc_example.exe: C_EXECUTABLE_LINKER__leapc_example_Debug CMakeFiles/leapc_example.dir/leapc_main.c.obj CMakeFiles/leapc_example.dir/test_get_hand_data.c.obj | C$:/Program$ Files/Ultraleap/LeapSDK/lib/x64/LeapC.lib
+build leapc_example.exe: C_EXECUTABLE_LINKER__leapc_example_Debug CMakeFiles/leapc_example.dir/leapc_main.c.obj CMakeFiles/leapc_example.dir/ABC_get_hand_data.c.obj CMakeFiles/leapc_example.dir/DLU_get_hand_data.c.obj | C$:/Program$ Files/Ultraleap/LeapSDK/lib/x64/LeapC.lib
   FLAGS = -g
   LINK_LIBRARIES = "C:/Program Files/Ultraleap/LeapSDK/lib/x64/LeapC.lib"  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\leapc_example.dir
@@ -317,8 +324,8 @@ build FiducialTrackingSample.exe: C_EXECUTABLE_LINKER__FiducialTrackingSample_De
 
 build cmake_object_order_depends_target_test_get_hand_data: phony || cmake_object_order_depends_target_libExampleConnection
 
-build CMakeFiles/test_get_hand_data.dir/test_get_hand_data.c.obj: C_COMPILER__test_get_hand_data_Debug C$:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/samples/test_get_hand_data.c || cmake_object_order_depends_target_test_get_hand_data
-  DEP_FILE = CMakeFiles\test_get_hand_data.dir\test_get_hand_data.c.obj.d
+build CMakeFiles/test_get_hand_data.dir/ABC_get_hand_data.c.obj: C_COMPILER__test_get_hand_data_Debug C$:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/samples/ABC_get_hand_data.c || cmake_object_order_depends_target_test_get_hand_data
+  DEP_FILE = CMakeFiles\test_get_hand_data.dir\ABC_get_hand_data.c.obj.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -IC:/Cosas/conputer_progranming/SwampHacks_X/LeapMotion_setup/LeapSDK_CLion/samples -isystem "C:/Program Files/Ultraleap/LeapSDK/include"
   OBJECT_DIR = CMakeFiles\test_get_hand_data.dir
@@ -332,7 +339,7 @@ build CMakeFiles/test_get_hand_data.dir/test_get_hand_data.c.obj: C_COMPILER__te
 #############################################
 # Link the executable test_get_hand_data.exe
 
-build test_get_hand_data.exe: C_EXECUTABLE_LINKER__test_get_hand_data_Debug CMakeFiles/libExampleConnection.dir/ExampleConnection.c.obj CMakeFiles/test_get_hand_data.dir/test_get_hand_data.c.obj | C$:/Program$ Files/Ultraleap/LeapSDK/lib/x64/LeapC.lib || libExampleConnection
+build test_get_hand_data.exe: C_EXECUTABLE_LINKER__test_get_hand_data_Debug CMakeFiles/libExampleConnection.dir/ExampleConnection.c.obj CMakeFiles/test_get_hand_data.dir/ABC_get_hand_data.c.obj | C$:/Program$ Files/Ultraleap/LeapSDK/lib/x64/LeapC.lib || libExampleConnection
   FLAGS = -g
   LINK_LIBRARIES = "C:/Program Files/Ultraleap/LeapSDK/lib/x64/LeapC.lib"  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\test_get_hand_data.dir

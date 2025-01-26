@@ -30,6 +30,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b4be593-ac43-432a-abf3-8394b7ff0798" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/DLU_get_hand_data.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../LeapSDK/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../LeapSDK/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../LeapSDK/.idea/LeapSDK.iml" beforeDir="false" />
@@ -37,7 +38,9 @@
       <change beforePath="$PROJECT_DIR$/../../LeapSDK/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../LeapSDK/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../LeapSDK/samples/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../LeapSDK/samples/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_get_hand_data.c" beforeDir="false" afterPath="$PROJECT_DIR$/ABC_get_hand_data.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +84,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Cosas\conputer_progranming\SwampHacks_X\LeapMotion_setup\LeapSDK_CLion\samples" />
+    </key>
+  </component>
   <component name="RunManager" selected="CMake Application.test_get_hand_data">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
@@ -167,7 +175,7 @@
       <workItem from="1737829918437" duration="3496000" />
       <workItem from="1737833973123" duration="37000" />
       <workItem from="1737834227522" duration="65000" />
-      <workItem from="1737834346675" duration="26147000" />
+      <workItem from="1737834346675" duration="26555000" />
     </task>
     <servers />
   </component>
