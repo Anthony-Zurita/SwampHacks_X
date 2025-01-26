@@ -9,7 +9,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoadingSpinner from "./components/LoadingSpinner";
 
 function App() {
-  const { isLoading, error } = useAuth0();
+  const { isLoading, error, isAuthenticated } = useAuth0();
 
   return (
     <>
@@ -18,20 +18,7 @@ function App() {
       {!error && isLoading && <LoadingSpinner />}
       {!error && !isLoading && (
         <>
-          <Landing />
-          <Container className="mt-4">
-            <Row className="justify-content-center">
-              <Col md={8} lg={6}>
-                <Card className="text-center shadow">
-                  <Card.Body>
-                    <div className="d-grid gap-2">
-                      <Profile />
-                    </div>
-                  </Card.Body>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
+          {isAuthenticated ? <Profile /> : <Landing />}
         </>
       )}
     </>
