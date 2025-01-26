@@ -20,7 +20,7 @@
 #include "ExampleConnection.h"
 
 #define nFrames 1000
-#define LOG_PATH "../output/log_abc3.csv"
+#define LOG_PATH "../output/log_abc4.csv"
 
 
 void printHandData(const LEAP_HAND* hand) {
