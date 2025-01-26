@@ -1,12 +1,10 @@
 //https://www.google.com/url?sa=i&url=https%3A%2F%2Fkidscarehomehealth.com%2Fbasic-sign-language-signs%2F&psig=AOvVaw0NXlp938lcn3lWjcm_M6jM&ust=1737934285972000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIidz--DkosDFQAAAAAdAAAAABAI
 import { Container } from 'react-bootstrap';
 import TypingAnimation from './TypingAnimation';
-import { useAuth0 } from '@auth0/auth0-react';
 
 const Landing = () => {
-    const { isAuthenticated } = useAuth0();
 
-    return !isAuthenticated && (
+    return (
         <div 
             className="landing-container"
             style={{
