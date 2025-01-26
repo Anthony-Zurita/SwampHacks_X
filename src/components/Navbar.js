@@ -13,11 +13,11 @@ function LightNavbar() {
   return (
       <Navbar bg="primary" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand as={Link} to="/">Visual Voice</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/" className="me-5">Visual Voice</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/learn">Learn</Nav.Link>
-            <Nav.Link as={Link} to="/tutors">Tutors</Nav.Link>
+            <Nav.Link as={Link} to="/" className="me-5">Home</Nav.Link>
+            <Nav.Link as={Link} to="/learn" className="me-5">Learn</Nav.Link>
+            <Nav.Link as={Link} to="/online-tutors" className="me-5">Online Tutors</Nav.Link>
             { isAuthenticated && (
               <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
             )}

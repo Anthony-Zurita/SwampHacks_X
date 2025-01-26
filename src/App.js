@@ -24,7 +24,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/profile" element={ isAuthenticated ? <Profile /> : <Navigate to="/" />} />
         <Route path="/learn" element={<div>Learn Page Coming Soon</div>} />
-        <Route path="/tutors" element={<div>Tutors Page Coming Soon</div>} />
+        <Route path="/online-tutors" element={<div>Tutors Page Coming Soon</div>} />
       </Routes>
     </BrowserRouter>
   );
