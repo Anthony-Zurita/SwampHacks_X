@@ -7,7 +7,7 @@ function CallInviteForm({ onSubmit }) {
     e.preventDefault();
     if (callId.trim()) {
       onSubmit(callId);
-      setCallId(""); // Clear the input field after submission
+      setCallId("");
     } else {
       alert("Please enter a valid call ID.");
     }
