@@ -19,7 +19,7 @@
 #include "LeapC.h"
 #include "ExampleConnection.h"
 
-#define nFrames 10
+#define nFrames 1000
 
 
 void printHandData(const LEAP_HAND* hand) {
@@ -33,12 +33,11 @@ void printHandData(const LEAP_HAND* hand) {
     printf("  Grab Angle: %f\n", hand->grab_angle);
     printf("  Wrist Position: (%f, %f, %f)\n", hand->arm.prev_joint.x, hand->arm.prev_joint.y, hand->arm.prev_joint.z);
     printf("  Elbow Position: (%f, %f, %f)\n", hand->arm.next_joint.x, hand->arm.next_joint.y, hand->arm.next_joint.z);
-    //printf("  Arm Direction: (%f, %f, %f)\n", hand->arm.direction.x, hand->arm.direction.y, hand->arm.direction.z);
 
     char *finger_names[5] = {"thumb", "index", "middle", "ring", "pinky"};
 
     // Digits (fingers)
-    for (int d = 0; d < 1; d++) {
+    for (int d = 0; d < 5; d++) {
         const LEAP_DIGIT* digit = &hand->digits[d];
         printf("  Finger %d (%s) ID: %d, Extended: %s\n", d, finger_names[d], digit->finger_id, digit->is_extended ? "Yes" : "No");
 
@@ -58,6 +57,8 @@ void printHandData(const LEAP_HAND* hand) {
 }
 
 
+
+
 void createLog(FILE* log, const LEAP_HAND* hand, const int64_t index, char letter, const uint32_t nHands) {
     //FILE* log;
     //log = fopen("../output/log.csv", "w");
@@ -68,39 +69,135 @@ void createLog(FILE* log, const LEAP_HAND* hand, const int64_t index, char lette
 //    }
 //    else {printf("FILE OPENED SUCCEFULLY");}
 
-    char *header = "key,letter,nHands,palmX,palmY,palmZ,palm_dir,palm_orient,"
-                   "arm_prev_joint,arm_next_joint, arm_rotation,"
-                   "pinch_dist,pinch_str,grab_angle,grab_strength,"
+    //char *header;
+    //header = "key,letter,nHands,palmX,palmY,palmZ,"
+             "palm_dirX,palm_dirY,palm_dirZ,"
+             "palm_orientX,palm_orientY,palm_orientZ,palm_orientW,"
+             "arm_prev_jointX,arm_prev_jointY,arm_prev_jointZ"
+             "arm_next_jointX,arm_next_jointY,arm_next_jointZ"
+             "arm_rotationX,arm_rotationY,arm_rotationZ,arm_rotationW,"
+             "pinch_dist,pinch_str,grab_angle,grab_strength,"
 
-                   "thumb_extended,thumb_prev_joint,thumb_nex_joint,thumb_rotation,"
-                   "index_extended,index_prev_joint,index_nex_joint,index_rotation,"
-                   "middle_extended,middle_prev_joint,middle_nex_joint,middle_rotation,"
-                   "ring_extended,ring_prev_joint,ring_nex_joint,ring_rotation,"
-                   "pinky_extended,pinky_prev_joint,pinky_nex_joint,pinky_rotation";
+             "thumb_extended,"
 
-    fprintf(log,"%s", header);
+             "thumb0_prev_jointX,thumb0_prev_jointY,thumb0_prev_jointZ,"
+             "thumb0_nex_jointX,thumb0_nex_jointY,thumb0_nex_jointZ"
+             "thumb0_rotationX,thumb0_rotationY,thumb0_rotationZ,thumb0_rotationW"
+
+             "thumb1_prev_jointX,thumb1_prev_jointY,thumb1_prev_jointZ,"
+             "thumb1_nex_jointX,thumb1_nex_jointY,thumb1_nex_jointZ"
+             "thumb1_rotationX,thumb1_rotationY,thumb1_rotationZ,thumb1_rotationW"
+
+             "thumb2_prev_jointX,thumb2_prev_jointY,thumb2_prev_jointZ,"
+             "thumb2_nex_jointX,thumb2_nex_jointY,thumb2_nex_jointZ"
+             "thumb2_rotationX,thumb2_rotationY,thumb2_rotationZ,thumb2_rotationW"
+
+             "thumb3_prev_jointX,thumb3_prev_jointY,thumb3_prev_jointZ,"
+             "thumb3_prev_jointX,thumb3_prev_jointY,thumb3_prev_jointZ,"
+             "thumb3_nex_jointX,thumb3_nex_jointY,thumb3_nex_jointZ"
+             "thumb3_rotationX,thumb3_rotationY,thumb3_rotationZ,thumb3_rotationW"
+
+             "index_extended,"
+             "index0_prev_jointX,index0_prev_jointY,index0_prev_jointZ,"
+             "index0_nex_jointX,index0_nex_jointY,index0_nex_jointZ"
+             "index0_rotationX,index0_rotationY,index0_rotationZ,index0_rotationW"
+
+             "index1_prev_jointX,index1_prev_jointY,index1_prev_jointZ,"
+             "index1_nex_jointX,index1_nex_jointY,index1_nex_jointZ"
+             "index1_rotationX,index1_rotationY,index1_rotationZ,index1_rotationW"
+
+             "index2_prev_jointX,index2_prev_jointY,index2_prev_jointZ,"
+             "index2_nex_jointX,index2_nex_jointY,index2_nex_jointZ"
+             "index2_rotationX,index2_rotationY,index2_rotationZ,index2_rotationW"
+
+             "index3_prev_jointX,index3_prev_jointY,index3_prev_jointZ,"
+             "index3_prev_jointX,index3_prev_jointY,index3_prev_jointZ,"
+             "index3_nex_jointX,index3_nex_jointY,index3_nex_jointZ"
+             "index3_rotationX,index3_rotationY,index3_rotationZ,thumb3_rotationW"
+
+             "middle_extended,"
+             "middle0_prev_jointX,middle0_prev_jointY,middle0_prev_jointZ,"
+             "middle0_nex_jointX,middle0_nex_jointY,middle0_nex_jointZ"
+             "middle0_rotationX,middle0_rotationY,middle0_rotationZ,middle0_rotationW"
+
+             "middle1_prev_jointX,middle1_prev_jointY,middle1_prev_jointZ,"
+             "middle1_nex_jointX,middle1_nex_jointY,middle1_nex_jointZ"
+             "middle1_rotationX,middle1_rotationY,middle1_rotationZ,middle1_rotationW"
+
+             "middle2_prev_jointX,middle2_prev_jointY,middle2_prev_jointZ,"
+             "middle2_nex_jointX,middle2_nex_jointY,middle2_nex_jointZ"
+             "middle2_rotationX,middle2_rotationY,middle2_rotationZ,middle2_rotationW"
+
+             "middle3_prev_jointX,middle3_prev_jointY,middle3_prev_jointZ,"
+             "middle3_prev_jointX,middle3_prev_jointY,middle3_prev_jointZ,"
+             "middle3_nex_jointX,middle3_nex_jointY,middle3_nex_jointZ"
+             "middle3_rotationX,middle3_rotationY,middle3_rotationZ,thumb3_rotationW"
+
+             "ring_extended,"
+             "ring0_prev_jointX,ring0_prev_jointY,ring0_prev_jointZ,"
+             "ring0_nex_jointX,ring0_nex_jointY,ring0_nex_jointZ"
+             "ring0_rotationX,ring0_rotationY,ring0_rotationZ,ring0_rotationW"
+
+             "ring1_prev_jointX,ring1_prev_jointY,ring1_prev_jointZ,"
+             "ring1_nex_jointX,ring1_nex_jointY,ring1_nex_jointZ"
+             "ring1_rotationX,ring1_rotationY,ring1_rotationZ,ring1_rotationW"
+
+             "ring2_prev_jointX,ring2_prev_jointY,ring2_prev_jointZ,"
+             "ring2_nex_jointX,ring2_nex_jointY,ring2_nex_jointZ"
+             "ring2_rotationX,ring2_rotationY,ring2_rotationZ,ring2_rotationW"
+
+             "ring3_prev_jointX,ring3_prev_jointY,ring3_prev_jointZ,"
+             "ring3_prev_jointX,ring3_prev_jointY,ring3_prev_jointZ,"
+             "ring3_nex_jointX,ring3_nex_jointY,ring3_nex_jointZ"
+             "ring3_rotationX,ring3_rotationY,ring3_rotationZ,thumb3_rotationW"
+
+             "pinky_extended,"
+             "pinky0_prev_jointX,pinky0_prev_jointY,pinky0_prev_jointZ,"
+             "pinky0_nex_jointX,pinky0_nex_jointY,pinky0_nex_jointZ"
+             "pinky0_rotationX,pinky0_rotationY,pinky0_rotationZ,pinky0_rotationW"
+
+             "pinky1_prev_jointX,pinky1_prev_jointY,pinky1_prev_jointZ,"
+             "pinky1_nex_jointX,pinky1_nex_jointY,pinky1_nex_jointZ"
+             "pinky1_rotationX,pinky1_rotationY,pinky1_rotationZ,pinky1_rotationW"
+
+             "pinky2_prev_jointX,pinky2_prev_jointY,pinky2_prev_jointZ,"
+             "pinky2_nex_jointX,pinky2_nex_jointY,pinky2_nex_jointZ"
+             "pinky2_rotationX,pinky2_rotationY,pinky2_rotationZ,pinky2_rotationW"
+
+             "pinky3_prev_jointX,pinky3_prev_jointY,pinky3_prev_jointZ,"
+             "pinky3_prev_jointX,pinky3_prev_jointY,pinky3_prev_jointZ,"
+             "pinky3_nex_jointX,pinky3_nex_jointY,pinky3_nex_jointZ"
+             "pinky3_rotationX,pinky3_rotationY,pinky3_rotationZ,thumb3_rotationW";
+
+    //fprintf(log,"%s", header);
 
     for (int n = 0; n < nHands; n++) {
         fputc('\n', log);
-//        fprintf(log, "%lld,%c,%u,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"
-//                     "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"
+//        fprintf(log, "%lld,%c,%u,"
+//                     "%f,%f,%f,"
+//                     "%f,%f,%f,"
+//                     "%f,%f,%f,%f"
+//                     "%f,%f,%f,"
+//                     "%f,%f,%f,"
+//                     "%f,%f,%f,%f"
 //                     "%f,%f,%f,%f"
 //                     ,
 //
-//                index, toupper(letter), nHands, hand->palm.position.x, hand->palm.position.y, hand->palm.position.z,                         //first line from header
+//                index, toupper(letter), nHands,
+//                hand->palm.position.x, hand->palm.position.y, hand->palm.position.z,                         //first line from header
 //                hand->palm.direction.x, hand->palm.direction.y, hand->palm.direction.z,                                     //first line from header
 //                hand->palm.orientation.x, hand->palm.orientation.y, hand->palm.orientation.z, hand->palm.orientation.w,     //first line from header
-//                hand->arm.prev_joint.x,hand->arm.prev_joint.x,hand->arm.prev_joint.x,                                       //second line from header
-//                hand->arm.next_joint.x,hand->arm.next_joint.x,hand->arm.next_joint.x,                                       //second line from header
+//                hand->arm.prev_joint.x,hand->arm.prev_joint.y,hand->arm.prev_joint.z,                                       //second line from header
+//                hand->arm.next_joint.x,hand->arm.next_joint.y,hand->arm.next_joint.z,                                       //second line from header
 //                hand->arm.rotation.x,hand->arm.rotation.y,hand->arm.rotation.z,hand->arm.rotation.w,                        //second line from header
 //                hand->pinch_distance,hand->pinch_strength,hand->grab_angle,hand->grab_strength                             //third line from header
 //                );
 
-        for (int i = 1; i < 2; i++) {
-            fprintf(log,"%u,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"          //thumb metacarpal
-                        "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"             //thumb proximal
-                        "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"             //thumb intermediate
-                        "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"             //thumb distal
+        for (int i = 0; i < 5; i++) {
+            fprintf(log,"%u,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,"          //thumb metacarpal
+                        "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,"             //thumb proximal
+                        "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,"             //thumb intermediate
+                        "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,"             //thumb distal
                     ,
 
                     hand->digits[i].is_extended,
@@ -145,6 +242,98 @@ int main(int argc, char** argv) {
     }
     else {printf("FILE OPENED SUCCEFULLY\n");}
 
+    char *header;
+    header = //"key,letter,nHands,palmX,palmY,palmZ,palm_dirX,palm_dirY,palm_dirZ,palm_orientX,palm_orientY,palm_orientZ,palm_orientW,arm_prev_jointX,arm_prev_jointY,arm_prev_jointZ,arm_next_jointX,arm_next_jointY,arm_next_jointZ,"
+             //"arm_rotationX,arm_rotationY,arm_rotationZ,arm_rotationW,"
+             //"pinch_dist,pinch_str,grab_angle,grab_strength,"
+
+             "thumb_extended,"
+             "thumb0_prev_jointX,thumb0_prev_jointY,thumb0_prev_jointZ,"
+             "thumb0_nex_jointX,thumb0_nex_jointY,thumb0_nex_jointZ,"
+             "thumb0_rotationX,thumb0_rotationY,thumb0_rotationZ,thumb0_rotationW,"
+
+             "thumb1_prev_jointX,thumb1_prev_jointY,thumb1_prev_jointZ,"
+             "thumb1_nex_jointX,thumb1_nex_jointY,thumb1_nex_jointZ,"
+             "thumb1_rotationX,thumb1_rotationY,thumb1_rotationZ,thumb1_rotationW,"
+
+             "thumb2_prev_jointX,thumb2_prev_jointY,thumb2_prev_jointZ,"
+             "thumb2_nex_jointX,thumb2_nex_jointY,thumb2_nex_jointZ,"
+             "thumb2_rotationX,thumb2_rotationY,thumb2_rotationZ,thumb2_rotationW,"
+
+             "thumb3_prev_jointX,thumb3_prev_jointY,thumb3_prev_jointZ,"
+             "thumb3_nex_jointX,thumb3_nex_jointY,thumb3_nex_jointZ,"
+             "thumb3_rotationX,thumb3_rotationY,thumb3_rotationZ,thumb3_rotationW,"
+
+             "index_extended,"
+             "index0_prev_jointX,index0_prev_jointY,index0_prev_jointZ,"
+             "index0_nex_jointX,index0_nex_jointY,index0_nex_jointZ,"
+             "index0_rotationX,index0_rotationY,index0_rotationZ,index0_rotationW,"
+
+             "index1_prev_jointX,index1_prev_jointY,index1_prev_jointZ,"
+             "index1_nex_jointX,index1_nex_jointY,index1_nex_jointZ,"
+             "index1_rotationX,index1_rotationY,index1_rotationZ,index1_rotationW,"
+
+             "index2_prev_jointX,index2_prev_jointY,index2_prev_jointZ,"
+             "index2_nex_jointX,index2_nex_jointY,index2_nex_jointZ,"
+             "index2_rotationX,index2_rotationY,index2_rotationZ,index2_rotationW,"
+
+             "index3_prev_jointX,index3_prev_jointY,index3_prev_jointZ,"
+             "index3_nex_jointX,index3_nex_jointY,index3_nex_jointZ,"
+             "index3_rotationX,index3_rotationY,index3_rotationZ,index3_rotationW,"
+
+             "middle_extended,"
+             "middle0_prev_jointX,middle0_prev_jointY,middle0_prev_jointZ,"
+             "middle0_nex_jointX,middle0_nex_jointY,middle0_nex_jointZ,"
+             "middle0_rotationX,middle0_rotationY,middle0_rotationZ,middle0_rotationW,"
+
+             "middle1_prev_jointX,middle1_prev_jointY,middle1_prev_jointZ,"
+             "middle1_nex_jointX,middle1_nex_jointY,middle1_nex_jointZ,"
+             "middle1_rotationX,middle1_rotationY,middle1_rotationZ,middle1_rotationW,"
+
+             "middle2_prev_jointX,middle2_prev_jointY,middle2_prev_jointZ,"
+             "middle2_nex_jointX,middle2_nex_jointY,middle2_nex_jointZ,"
+             "middle2_rotationX,middle2_rotationY,middle2_rotationZ,middle2_rotationW,"
+
+             "middle3_prev_jointX,middle3_prev_jointY,middle3_prev_jointZ,"
+             "middle3_nex_jointX,middle3_nex_jointY,middle3_nex_jointZ,"
+             "middle3_rotationX,middle3_rotationY,middle3_rotationZ,middle3_rotationW,"
+
+             "ring_extended,"
+             "ring0_prev_jointX,ring0_prev_jointY,ring0_prev_jointZ,"
+             "ring0_nex_jointX,ring0_nex_jointY,ring0_nex_jointZ,"
+             "ring0_rotationX,ring0_rotationY,ring0_rotationZ,ring0_rotationW,"
+
+             "ring1_prev_jointX,ring1_prev_jointY,ring1_prev_jointZ,"
+             "ring1_nex_jointX,ring1_nex_jointY,ring1_nex_jointZ,"
+             "ring1_rotationX,ring1_rotationY,ring1_rotationZ,ring1_rotationW,"
+
+             "ring2_prev_jointX,ring2_prev_jointY,ring2_prev_jointZ,"
+             "ring2_nex_jointX,ring2_nex_jointY,ring2_nex_jointZ,"
+             "ring2_rotationX,ring2_rotationY,ring2_rotationZ,ring2_rotationW,"
+
+             "ring3_prev_jointX,ring3_prev_jointY,ring3_prev_jointZ,"
+             "ring3_nex_jointX,ring3_nex_jointY,ring3_nex_jointZ,"
+             "ring3_rotationX,ring3_rotationY,ring3_rotationZ,ring3_rotationW,"
+
+             "pinky_extended,"
+             "pinky0_prev_jointX,pinky0_prev_jointY,pinky0_prev_jointZ,"
+             "pinky0_nex_jointX,pinky0_nex_jointY,pinky0_nex_jointZ,"
+             "pinky0_rotationX,pinky0_rotationY,pinky0_rotationZ,pinky0_rotationW,"
+
+             "pinky1_prev_jointX,pinky1_prev_jointY,pinky1_prev_jointZ,"
+             "pinky1_nex_jointX,pinky1_nex_jointY,pinky1_nex_jointZ,"
+             "pinky1_rotationX,pinky1_rotationY,pinky1_rotationZ,pinky1_rotationW,"
+
+             "pinky2_prev_jointX,pinky2_prev_jointY,pinky2_prev_jointZ,"
+             "pinky2_nex_jointX,pinky2_nex_jointY,pinky2_nex_jointZ,"
+             "pinky2_rotationX,pinky2_rotationY,pinky2_rotationZ,pinky2_rotationW,"
+
+             "pinky3_prev_jointX,pinky3_prev_jointY,pinky3_prev_jointZ,"
+             "pinky3_nex_jointX,pinky3_nex_jointY,pinky3_nex_jointZ,"
+             "pinky3_rotationX,pinky3_rotationY,pinky3_rotationZ,pinky3_rotationW,";
+
+    fprintf(log,"%s", header);
+
     int loop_cnt = 0;
     char target_letter;
 
@@ -153,7 +342,7 @@ int main(int argc, char** argv) {
         //printf("How many frames of data?\n");
         //scanf("%d", &nFrames);
         printf("Which letter are you inputting in ASL?\n");
-        Sleep(2000);
+        Sleep(3500);
 
         if (loop_cnt == 0) {target_letter = 'A';}
         if (loop_cnt == 1) {target_letter = 'B';}
@@ -166,7 +355,7 @@ int main(int argc, char** argv) {
         //if (target_letter == '0') {break;}
 
         for (int curr_frame = 0; curr_frame < nFrames;) {
-            printf("\n\n");
+            //printf("\n\n");
             //Sleep(1000);
 
 
@@ -179,6 +368,7 @@ int main(int argc, char** argv) {
                     //printHandData(hand);
                     if (frame->nHands > 0) {
                         createLog(log, hand, frame->tracking_frame_id, target_letter, frame->nHands);
+                        printHandData(hand);
                         curr_frame++;
                     }
                 }
