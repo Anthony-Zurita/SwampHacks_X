@@ -19,6 +19,8 @@
 #include "LeapC.h"
 #include "ExampleConnection.h"
 
+#define nFrames 1000
+
 
 void printHandData(const LEAP_HAND* hand) {
     // General hand data
@@ -33,10 +35,12 @@ void printHandData(const LEAP_HAND* hand) {
     printf("  Elbow Position: (%f, %f, %f)\n", hand->arm.next_joint.x, hand->arm.next_joint.y, hand->arm.next_joint.z);
     //printf("  Arm Direction: (%f, %f, %f)\n", hand->arm.direction.x, hand->arm.direction.y, hand->arm.direction.z);
 
+    char *finger_names[5] = {"thumb", "index", "middle", "ring", "pinky"};
+
     // Digits (fingers)
-    for (int d = 0; d < 5; d++) {
+    for (int d = 0; d < 1; d++) {
         const LEAP_DIGIT* digit = &hand->digits[d];
-        printf("  Finger %d ID: %d, Extended: %s\n", d, digit->finger_id, digit->is_extended ? "Yes" : "No");
+        printf("  Finger %d (%s) ID: %d, Extended: %s\n", d, finger_names[d], digit->finger_id, digit->is_extended ? "Yes" : "No");
 
         // Print bone data
         const LEAP_BONE* bones[] = { &digit->metacarpal, &digit->proximal, &digit->intermediate, &digit->distal };
@@ -54,6 +58,72 @@ void printHandData(const LEAP_HAND* hand) {
 }
 
 
+void createLog(FILE* log, const LEAP_HAND* hand, const int64_t index, char letter, const uint32_t nHands) {
+    //FILE* log;
+    //log = fopen("../output/log.csv", "w");
+
+//    if (log == NULL) {
+//        printf("FILE NOT OPENED, exiting");
+//        exit(0);
+//    }
+//    else {printf("FILE OPENED SUCCEFULLY");}
+
+    char *header = "key,letter,nHands,palmX,palmY,palmZ,palm_dir,palm_orient,"
+                   "arm_prev_joint,arm_next_joint, arm_rotation,"
+                   "pinch_dist,pinch_str,grab_angle,grab_strength,"
+
+                   "thumb_extended,thumb_prev_joint,thumb_nex_joint,thumb_rotation,"
+                   "index_extended,index_prev_joint,index_nex_joint,index_rotation,"
+                   "middle_extended,middle_prev_joint,middle_nex_joint,middle_rotation,"
+                   "ring_extended,ring_prev_joint,ring_nex_joint,ring_rotation,"
+                   "pinky_extended,pinky_prev_joint,pinky_nex_joint,pinky_rotation";
+
+    fprintf(log,"%s", header);
+
+    for (int n = 0; n < nHands; n++) {
+        fputc('\n', log);
+        fprintf(log, "%lld,%c,%u,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"
+                     "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"
+                     "%f,%f,%f,%f"
+                     ,
+
+                index, toupper(letter), nHands, hand->palm.position.x, hand->palm.position.y, hand->palm.position.z,                         //first line from header
+                hand->palm.direction.x, hand->palm.direction.y, hand->palm.direction.z,                                     //first line from header
+                hand->palm.orientation.x, hand->palm.orientation.y, hand->palm.orientation.z, hand->palm.orientation.w,     //first line from header
+                hand->arm.prev_joint.x,hand->arm.prev_joint.x,hand->arm.prev_joint.x,                                       //second line from header
+                hand->arm.next_joint.x,hand->arm.next_joint.x,hand->arm.next_joint.x,                                       //second line from header
+                hand->arm.rotation.x,hand->arm.rotation.y,hand->arm.rotation.z,hand->arm.rotation.w,                        //second line from header
+                hand->pinch_distance,hand->pinch_strength,hand->grab_angle,hand->grab_strength                             //third line from header
+                );
+
+        for (int i = 0; i < 5; i++) {
+            fprintf(log,"%u,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"          //thumb metacarpal
+                        "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"             //thumb proximal
+                        "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"             //thumb intermediate
+                        "%f,%f,%f,%f,%f,%f,%f,%f,%f,%f"             //thumb distal
+                    ,
+
+                    hand->digits[i].is_extended,
+                    hand->digits[i].metacarpal.prev_joint.x, hand->digits[i].metacarpal.prev_joint.y, hand->digits[i].metacarpal.prev_joint.z,
+                    hand->digits[i].metacarpal.next_joint.x, hand->digits[i].metacarpal.next_joint.y, hand->digits[i].metacarpal.next_joint.z,
+                    hand->digits[i].metacarpal.rotation.x, hand->digits[i].metacarpal.rotation.y, hand->digits[i].metacarpal.rotation.z, hand->digits[i].metacarpal.rotation.w,
+
+                    hand->digits[i].proximal.prev_joint.x, hand->digits[i].proximal.prev_joint.y, hand->digits[i].proximal.prev_joint.z,
+                    hand->digits[i].proximal.next_joint.x, hand->digits[i].proximal.next_joint.y, hand->digits[i].proximal.next_joint.z,
+                    hand->digits[i].proximal.rotation.x, hand->digits[i].proximal.rotation.y, hand->digits[i].proximal.rotation.z, hand->digits[i].proximal.rotation.w,
+
+                    hand->digits[i].intermediate.prev_joint.x, hand->digits[i].intermediate.prev_joint.y, hand->digits[i].intermediate.prev_joint.z,
+                    hand->digits[i].intermediate.next_joint.x, hand->digits[i].intermediate.next_joint.y, hand->digits[i].intermediate.next_joint.z,
+                    hand->digits[i].intermediate.rotation.x, hand->digits[i].intermediate.rotation.y, hand->digits[i].intermediate.rotation.z, hand->digits[i].proximal.rotation.w,
+
+                    hand->digits[i].distal.prev_joint.x, hand->digits[i].distal.prev_joint.y, hand->digits[i].distal.prev_joint.z,
+                    hand->digits[i].distal.next_joint.x, hand->digits[i].distal.next_joint.y, hand->digits[i].distal.next_joint.z,
+                    hand->digits[i].distal.rotation.x, hand->digits[i].distal.rotation.y, hand->digits[i].distal.rotation.z, hand->digits[i].distal.rotation.w
+                    );
+        }
+    }
+}
+
 int64_t lastFrameID = 0; //The last frame received
 
 int main(int argc, char** argv) {
@@ -66,19 +136,48 @@ int main(int argc, char** argv) {
     if(deviceProps)
         printf("Using device %s.\n", deviceProps->serial);
 
-    for(;;){
-        printf("\n\n\n\n\n");
-        Sleep(1000);
-        LEAP_TRACKING_EVENT *frame = GetFrame();
-        if(frame && (frame->tracking_frame_id > lastFrameID)){
-            lastFrameID = frame->tracking_frame_id;
-            printf("Frame %lli with %i hands.\n", (long long int)frame->tracking_frame_id, frame->nHands);
-            for(uint32_t h = 0; h < frame->nHands; h++){
-                LEAP_HAND* hand = &frame->pHands[h];
-                printHandData(hand);
+    FILE* log;
+    log = fopen("../output/log.csv", "w");
+
+    if (log == NULL) {
+        printf("FILE NOT OPENED, exiting");
+        exit(0);
+    }
+    else {printf("FILE OPENED SUCCEFULLY\n");}
+
+    while (true) {
+
+        //printf("How many frames of data?\n");
+        //scanf("%d", &nFrames);
+
+        printf("Which letter are you inputting in ASL?\n");
+        char target_letter;
+        scanf("%c", &target_letter);
+        //printf("you entered %c", target_letter);
+
+        if (target_letter == '0') {break;}
+
+        for (int curr_frame = 0; curr_frame < nFrames;) {
+            printf("\n\n");
+            //Sleep(1000);
+
+
+            LEAP_TRACKING_EVENT *frame = GetFrame();
+            if (frame && (frame->tracking_frame_id > lastFrameID)) {
+                lastFrameID = frame->tracking_frame_id;
+                printf("Frame %lli with %i hands.\n", (long long int) frame->tracking_frame_id, frame->nHands);
+                for (uint32_t h = 0; h < frame->nHands; h++) {
+                    LEAP_HAND *hand = &frame->pHands[h];
+                    //printHandData(hand);
+                    if (frame->nHands > 0) {
+                        createLog(log, hand, frame->tracking_frame_id, target_letter, frame->nHands);
+                        curr_frame++;
+                    }
+                }
             }
-        }
-    } //ctrl-c to exit
+        } //ctrl-c to exit
+    }
+    fclose(log);
     return 0;
 }
 //End-of-Sample

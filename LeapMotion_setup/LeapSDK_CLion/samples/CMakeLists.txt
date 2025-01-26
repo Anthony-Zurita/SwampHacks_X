@@ -23,7 +23,7 @@ endif (UNIX)
 
 add_executable(
 	leapc_example
-	"leapc_main.c")
+	"leapc_main.c" test_get_hand_data.c)
 
 target_link_libraries(
 	leapc_example
@@ -93,6 +93,7 @@ add_sample("PollingSample" "PollingSample.c")
 add_sample("InterpolationSample" "InterpolationSample.c")
 add_sample("CheckLicenseFlagSample" "CheckLicenseFlagSample.c")
 add_sample("FiducialTrackingSample" "FiducialTrackingSample.c")
+add_sample("test_get_hand_data" "test_get_hand_data.c")
 if(NOT ANDROID)
 	add_sample("MultiDeviceSample" "MultiDeviceSample.c")
 endif()
