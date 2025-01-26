@@ -11,7 +11,7 @@ const LetterPractice = () => {
 
 // getRandomLetter is a helper function to get a random letter from the alphabet
   const getRandomLetter = () => {
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const alphabet = 'ABCDEFGHIKLMNOPQRSTUVWXY';
     return alphabet[Math.floor(Math.random() * alphabet.length)];
   };
 
