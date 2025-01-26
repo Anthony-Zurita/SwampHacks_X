@@ -36,3 +36,57 @@
     transform: rotate(360deg);
   }
 }
+
+.learning-layout {
+  padding: 20px;
+}
+
+.webcam-area {
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px;
+}
+
+.webcam-container {
+  width: 100%;
+  max-width: 480px;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.webcam-feed {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.control-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.reference-area {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.asl-reference-small {
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Keep your existing styles for the initial view */
+.asl-table-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}

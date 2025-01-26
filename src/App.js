@@ -5,6 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import LightNavbar from "./components/Navbar";
+import Learn from "./components/Learn";
 
 function App() {
   const { isLoading, error, isAuthenticated } = useAuth0();
@@ -23,7 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/profile" element={ isAuthenticated ? <Profile /> : <Navigate to="/" />} />
-        <Route path="/learn" element={<div>Learn Page Coming Soon</div>} />
+        <Route path="/learn" element={<Learn />} />
         <Route path="/online-tutors" element={<div>Tutors Page Coming Soon</div>} />
       </Routes>
     </BrowserRouter>
