@@ -92,9 +92,8 @@ function Dashboard() {
         });
       }
     };
-
+    // Attach remote stream to video element
     peerConnection.current.ontrack = (event) => {
-      // Attach remote stream to video element
       if (remoteVideoRef.current) {
         remoteVideoRef.current.srcObject = event.streams[0];
       }
@@ -180,9 +179,10 @@ function Dashboard() {
       });
   };
 
+  // Closing Model After declining
   const handleDecline = () => {
     console.log("Call declined!");
-    setIncomingCall(null); // Close the modal after declining
+    setIncomingCall(null);
   };
 
   return (
