@@ -40,9 +40,9 @@ io.on("connection", (socket) => {
     const targetSocket = activeUsers[targetId];
     if (targetSocket) {
       io.to(targetSocket).emit("incoming-call", {
-        from: userId, // Unique ID of the caller
+        from: userId,
         socketId: socket.id,
-        offer, // WebRTC offer
+        offer,
       });
       console.log(
         `Incoming call sent to ${targetSocket} from userId: ${userId}`
@@ -68,7 +68,7 @@ io.on("connection", (socket) => {
     const targetSocket = activeUsers[targetId];
     if (targetSocket) {
       io.to(targetSocket).emit("ice-candidate", { candidate });
-      console.log(`Relayed ICE candidate to ${targetId}`);
+      console.log(`Relayed ICE candidate to ${targetId} successful`);
     } else {
       console.error(
         `Target user not found for ICE candidate relay: ${targetId}`
