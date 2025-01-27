@@ -107,7 +107,7 @@ The **Visual Voice** website resides on the **master branch** and serves as the 
      
 ---
 
-## **7. References**
+## **5. References**
 - [Leap Motion API Documentation](https://docs.ultraleap.com/api-reference/tracking-api/leapc-guide.html)
 - [Scikit-learn Documentation](https://scikit-learn.org/stable/)
 - [Auth0 Authentication](https://auth0.com/)
