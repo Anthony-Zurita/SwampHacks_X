@@ -6,7 +6,7 @@ Team Members: Jorge Ramirez, Leonardo Cobaleda, Andrei Ursu, & Anthony Zurita (R
 **Visual Voice** is an innovative project designed to teach people **American Sign Language (ASL)**. The AI model at the core of this project uses the camera of a device to detect hand signs and provide real-time feedback on whether the user is correctly performing ASL gestures.
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
   <img src="https://github.com/user-attachments/assets/8066bf6f-ddd4-4e99-8f3a-938cf0c39ae1" alt="Image 1" width="350", height="300">
-  <img src="https://github.com/user-attachments/assets/7b75a8f4-50c9-4be4-ae99-28f50d5adbfd" alt="Image 3" width="350", height="300">
+  <img src="https://github.com/user-attachments/assets/7b75a8f4-50c9-4be4-ae99-28f50d5adbfd" alt="Image 3" width="400", height="300">
   <img src="https://github.com/user-attachments/assets/fe0ec6c8-1b39-41c2-b9a9-4306062d41c8" alt="Image 4" width="200", height="300">
 </div>
 
